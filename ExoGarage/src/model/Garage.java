@@ -1,33 +1,30 @@
 
 package model;
 
-import java.util.Arrays;
+import java.util.HashMap;
 
 public class Garage {
 
 	
-	private Voiture[] garage;
-	
-	
-	public Garage(int taille) {
-		garage = new Voiture[taille];
+	private HashMap<String, Voiture> garage = new HashMap<String, Voiture>();
+
+	public Garage() {
 	}
 
-
-	public Voiture[] getGarage() {
+	public HashMap<String, Voiture> getGarage() {
 		return garage;
 	}
 
-
-	public void setGarage(Voiture[] garage) {
+	public void setGarage(HashMap<String, Voiture> garage) {
 		this.garage = garage;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Garage [garage=" + Arrays.toString(garage) + "]";
+		return "Garage [garage=" + garage + "]";
 	}
+	
+	
 	
 	
 	
