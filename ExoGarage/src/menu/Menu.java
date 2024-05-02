@@ -25,6 +25,14 @@ public class Menu {
 	private void tempsQuiPasse() {
 		//décrémenter les reservoirs d'essence de chaque voiture en marche
 		//eteindre les voitures qui n'ont plus d'essence
+		for(Voiture v : garage.getGarage()) {
+			if(v!=null && v.isMarche()) {
+				v.setEssence(v.getEssence()-1);
+				if(v.getEssence()<=0) {
+					v.setMarche(false);
+				}
+			}
+		}
 	}
 
 
@@ -54,7 +62,12 @@ public class Menu {
 		System.out.println("Saisir le numéro de l'emplacement");
 		//TODO selection par nom du model unique
 		int indexVoitureSelectionne = saisieInt();
-		garage.getGarage()[indexVoitureSelectionne].setMarche(true);
+		if(garage.getGarage()[indexVoitureSelectionne].getEssence()>=0) {
+			garage.getGarage()[indexVoitureSelectionne].setMarche(true);
+		}
+		else {
+			System.out.println("Pas assez d'essence pour démarrer");
+		}
 	}
 
 
