@@ -5,30 +5,13 @@ public class Voiture {
 	
 	//model, reserve d'essence, marche/arret
 	private int nbRoues = 4;
-	private String model;
+	private final String MODEL;
 	private int essence = 50;
 	private boolean marche = false;
-
-	public Voiture(int nbRoues) {
-		this.nbRoues = nbRoues;
-	}
 	
 	public Voiture(String model) {
-		this.model = model;
+		this.MODEL = model;
 	}
-
-	public Voiture(int nbRoues, String model, int essence, boolean marche) {
-		this.nbRoues = nbRoues;
-		this.model = model;
-		this.essence = essence;
-		this.marche = marche;
-	}
-
-
-
-
-
-
 
 	public int getNbRoues() {
 		return nbRoues;
@@ -40,11 +23,7 @@ public class Voiture {
 	
 	
 	public String getModel() {
-		return model;
-	}
-
-	public void setModel(String model) {
-		this.model = model;
+		return MODEL;
 	}
 
 	public int getEssence() {
@@ -67,7 +46,7 @@ public class Voiture {
 
 	@Override
 	public String toString() {
-		return "Voiture [nbRoues=" + nbRoues + ", model=" + model + ", essence=" + essence + ", marche=" + marche + "]";
+		return "Voiture [nbRoues=" + nbRoues + ", model=" + MODEL + ", essence=" + essence + ", marche=" + marche + "]";
 	}
 
 	

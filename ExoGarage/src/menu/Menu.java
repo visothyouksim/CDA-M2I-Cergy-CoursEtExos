@@ -3,7 +3,6 @@ package menu;
 import java.util.InputMismatchException;
 import java.util.Map.Entry;
 import java.util.Scanner;
-import java.util.Set;
 
 import model.Garage;
 import model.Voiture;
@@ -45,7 +44,7 @@ public class Menu {
 		case 2:
 			startACar();
 			break;
-		case 3:// fillTheTank();
+		case 3: fillTheTank();
 			break;
 		case 4:
 			System.out.println(garage);
@@ -57,6 +56,11 @@ public class Menu {
 		default:
 			;
 		}
+	}
+
+	private void fillTheTank() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void startACar() {
@@ -76,10 +80,17 @@ public class Menu {
 
 	private void creationVoiture() {
 		// TODO chaque voiture doit être unique
+		
 			String nomModel = askNomModel();
-			Voiture v = new Voiture(nomModel);
-			//garage.getGarage()[emptySpace] = v;
-			garage.getGarage().put(nomModel, v);
+			//test unicité
+			if(!garage.getGarage().containsKey(nomModel)) {
+				Voiture v = new Voiture(nomModel);
+				garage.getGarage().put(nomModel, v);
+			}
+			else {
+				System.out.println("Désolé, tu en as déjà une");
+			}
+			
 	}
 
 	private String askNomModel() {
