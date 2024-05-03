@@ -2,8 +2,8 @@ package model;
 
 public class Enemy extends Personnage {
 
-	public Enemy(int x, int y, String sprite, int vie) {
-		super(x, y, sprite, vie);
+	public Enemy(int x, int y, String sprite) {
+		super(x, y, sprite);
 		/*super();
 		this.x = x;
 		this.y = y;

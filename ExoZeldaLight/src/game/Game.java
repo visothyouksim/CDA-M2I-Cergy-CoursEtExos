@@ -1,81 +1,87 @@
 package game;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import model.Item;
+import model.Element;
+import model.Enemy;
 import model.Joueur;
 import model.Personnage;
-import java.util.ArrayList; // Import ArrayList
-import java.util.Random;
-
 
 public class Game {
 
-    String[][] carte = new String[10][10];
-    Personnage link = new Joueur(5, 5, "L", 3);
-    //créer une arrayList pour les ennemi
-    //ajouter 3 ennemi à l'arrayList
-    //afficher le contenu de l'arrayList dans notre carte
-    ArrayList<Personnage> enemies = new ArrayList<>(); // Create an ArrayList for enemies
+    String[][] carte = new String[15][15];
+    Personnage link = new Joueur(5, 5, "L");
+    ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
+    ArrayList<Item> itemList = new ArrayList<Item>();
 
+    boolean gameOn = true;
 
+    // class Element, personnage héritant de Element
+    // class item héritant de Element
+    // x, y et sprite dans Element
     public void launch() {
-        carte = createTab(carte);
-        carte = updateTabWithPerso(carte, link);
-        addEnemies(); // Add enemies to the ArrayList
-        displayEnemiesOnCarte(); // Display enemies on the carte
-        printTab(carte);
-    }
-
-    private void addEnemies() {
-        // Add 3 enemies to the ArrayList
-        enemies.add(new Personnage(1, 1, "E1", 1));
-        enemies.add(new Personnage(2, 2, "E2", 1));
-        enemies.add(new Personnage(3, 3, "E3", 1));
-
-        // Random random = new Random();
-        // // Define the enemies with their unique identifiers
-        // String[] enemyIds = {"E1", "E2", "E3"};
-        // // Define the enemies' initial positions
-        // int[][] initialPositions = {{1, 1}, {2, 2}, {3, 3}};
-
-        // for (int i = 0; i < enemyIds.length; i++) {
-        //     int x = initialPositions[i][0]; // Use the initial x position
-        //     int y = initialPositions[i][1]; // Use the initial y position
-        //     // Ensure the position is not already occupied by another character
-        //     while (carte[x][y] != null && !carte[x][y].equals(" ")) {
-        //         x = random.nextInt(10); // Generate a new random x coordinate (0 to 9)
-        //         y = random.nextInt(10); // Generate a new random y coordinate (0 to 9)
-        //     }
-        //     // Add the enemy to the ArrayList with the unique identifier and the new random position
-        //     enemies.add(new Personnage(x, y, enemyIds[i], 1)); // Example enemy with unique identifier and random position
-        // }
-
-        // Random random = new Random();
-        // // Assuming you want to add 3 enemies
-        // for (int i = 0; i < 3; i++) {
-        //     int x = random.nextInt(10); // Generate a random x coordinate (0 to 9)
-        //     int y = random.nextInt(10); // Generate a random y coordinate (0 to 9)
-        //     // Ensure the position is not already occupied by another character
-        //     while (carte[x][y] != null && !carte[x][y].equals(" ")) {
-        //         x = random.nextInt(10);
-        //         y = random.nextInt(10);
-        //     }
-        //     // Add the enemy to the ArrayList
-        //     enemies.add(new Personnage(x, y, "E", 1)); // Example enemy
-        // }
-    }
-
-    private void displayEnemiesOnCarte() {
-        // Iterate through the ArrayList and update the carte
-        for (Personnage enemy : enemies) {
-            carte[enemy.getX()][enemy.getY()] = enemy.getSprite();
+        createEnemies();
+        createItems();
+        createTab();
+        addEnemieOnMap();
+        addItemOnMap();
+        updateTabWithPerso(link);
+        while (gameOn) {
+            printTab();
+            handleMouvement();
         }
     }
 
-    private String[][] updateTabWithPerso(String[][] carte, Personnage link) {
-    	carte[link.getX()][link.getY()] = link.getSprite();
-		return carte;
-	}
+    private void handleMouvement() {
+        System.out.println("Quel direction ? : z -> up");
+        Scanner sc = new Scanner(System.in);
+        String direction = sc.nextLine();
+        switch (direction) {
+            case "z":
+                carte[link.getY()][link.getY()] = " ";
+                link.setY(link.getY() - 1);
+                updateTabWithPerso(link);
+                break;
+        }
+    }
 
-	private String[][] createTab(String[][] carte) {
+    // ----------------------------------------------------
+
+    private void createEnemies() {
+        enemyList.add(new Enemy(2, 8, "E"));
+        enemyList.add(new Enemy(8, 5, "E"));
+        enemyList.add(new Enemy(12, 7, "E"));
+    }
+
+    private void addEnemieOnMap() {
+        for (Enemy e : enemyList) {
+            updateTabWithPerso(e);
+        }
+    }
+
+    // ----------------------------------------------------
+
+    private void createItems() {
+        itemList.add(new Item(11, 2, "I"));
+        itemList.add(new Item(8, 12, "I"));
+        itemList.add(new Item(4, 10, "I"));
+    }
+
+    private void addItemOnMap() {
+        for (Item i : itemList) {
+            updateTabWithPerso(i);
+        }
+    }
+
+    // ----------------------------------------------------
+
+    private void updateTabWithPerso(Element perso) {
+        carte[perso.getX()][perso.getY()] = perso.getSprite();
+    }
+
+    private void createTab() {
         for (int i = 0; i < carte.length; i++) {
             for (int j = 0; j < carte[i].length; j++) {
                 if (i == 0 || i == carte.length - 1 || j == 0 || j == carte[i].length - 1) {
@@ -85,11 +91,10 @@ public class Game {
                 }
             }
         }
-        return carte;
     }
 
     // methode pour afficher la carte
-    public void printTab(String[][] carte) {
+    public void printTab() {
         for (int i = 0; i < carte.length; i++) {
             for (int j = 0; j < carte[i].length; j++) {
                 System.out.print(carte[i][j] + " ");
@@ -98,3 +103,15 @@ public class Game {
         }
     }
 }
+/*
+ * MMMMMMMMMM
+ * M M
+ * M M
+ * M M
+ * M M
+ * M M
+ * M M
+ * M M
+ * M M
+ * MMMMMMMMMM
+ */
