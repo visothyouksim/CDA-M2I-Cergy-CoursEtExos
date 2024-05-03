@@ -1,30 +1,64 @@
 package game;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 import model.Element;
 import model.Enemy;
+import model.Item;
 import model.Joueur;
 import model.Personnage;
 public class Game {
 
-	String[][] carte = new String[10][10];
+	String[][] carte = new String[15][15];
 	Personnage link = new Joueur(5, 5, "L", 3);
 	ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
-
+	ArrayList<Item> itemList = new ArrayList<Item>();
+	boolean gameOn = true;
 
 	//class Element, personnage héritant de Element
 	//class item héritant de Element
 	//x, y et sprite dans Element
 	public void launch() {
 		createEnemies();
+		createItems();
 		createTab();
 		addEnemieOnMap();
+		addItemsOnMap();
 		updateTabWithPerso(link);
-		printTab();
+		
+		while(gameOn) {
+			printTab();
+			handleMouvement();
+		}
 	}
 	
+	private void handleMouvement() {
+		System.out.println("Quel directement : z->up");
+		Scanner sc = new Scanner(System.in);
+		String direction = sc.nextLine();
+		switch(direction) {
+		case "z": 
+			carte[link.getX()][link.getY()] = " ";
+			link.setY(link.getY()-1);
+			updateTabWithPerso(link);
+			break;
+		}
+	}
+
+	private void addItemsOnMap() {
+		for (Item i : itemList) {
+			updateTabWithPerso(i);
+		}
+	}
+
+	private void createItems() {
+		itemList.add(new Item(9, 2, "I"));
+		itemList.add(new Item(7, 3, "I"));
+		itemList.add(new Item(10, 10, "I"));
+		
+	}
+
 	private void addEnemieOnMap() {
 		for (Enemy e : enemyList) {
 			updateTabWithPerso(e);

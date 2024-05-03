@@ -2,8 +2,8 @@ package model;
 
 public class Element {
 
-	public int x, y;
-	public String sprite;
+	private int x, y;
+	private String sprite;
 	
 	public Element(int x, int y, String sprite) {
 		this.x = x;
