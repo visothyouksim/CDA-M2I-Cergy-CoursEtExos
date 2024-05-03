@@ -3,6 +3,7 @@ package game;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Element;
 import model.Enemy;
 import model.Joueur;
 import model.Personnage;
@@ -11,10 +12,11 @@ public class Game {
 	String[][] carte = new String[10][10];
 	Personnage link = new Joueur(5, 5, "L", 3);
 	ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
-	//arrayList<> 
-	//add 3 enemies à enemyList
-	//afficher le contenu de l'ALE dans notre carte
-	
+
+
+	//class Element, personnage héritant de Element
+	//class item héritant de Element
+	//x, y et sprite dans Element
 	public void launch() {
 		createEnemies();
 		createTab();
@@ -35,7 +37,7 @@ public class Game {
 		enemyList.add(new Enemy(7, 7, "E"));
 	}
 
-	private void updateTabWithPerso(Personnage perso) {
+	private void updateTabWithPerso(Element perso) {
 		carte[perso.getX()][perso.getY()] = perso.getSprite();
 	}
 
