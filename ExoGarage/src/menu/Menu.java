@@ -1,10 +1,14 @@
 package menu;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
 
+import content.TextContent;
 import model.Garage;
 import model.Voiture;
 
@@ -39,23 +43,33 @@ public class Menu {
 	private void handleUtilisateurChoix(int choixUtil) {
 
 		switch (choixUtil) {
-		case 1:
-			creationVoiture();
-			break;
-		case 2:
-			startACar();
-			break;
-		case 3:// fillTheTank();
-			break;
-		case 4:
-			System.out.println(garage);
-			break;
-		case 5:
-			bye();
-			// System.exit(0);
-			break;
-		default:
-			;
+			case 1:
+				creationVoiture();
+				break;
+			case 2:
+				startACar();
+				break;
+			case 3:
+				fillTheTank();
+				break;
+			case 4:
+				System.out.println(garage);
+				break;
+			case 5:
+				bye();
+				// System.exit(0);
+				break;
+			default:
+				;
+		}
+	}
+
+	private void fillTheTank() {
+		for (Entry<String, Voiture> vv : garage.getGarage().entrySet()) {
+			Voiture v = vv.getValue();
+			int qtAjoutee = 50 - v.getEssence();
+			System.out.println("Vous avez mis : " + qtAjoutee + "l d'essence");
+			v.setEssence(50);
 		}
 	}
 
@@ -67,7 +81,7 @@ public class Menu {
 		// TODO selection par nom du model unique
 		String keyVoitureSelectionne = saisieString();
 		if (garage.getGarage().containsKey(keyVoitureSelectionne) &&
-			garage.getGarage().get(keyVoitureSelectionne).getEssence() >= 0) {
+				garage.getGarage().get(keyVoitureSelectionne).getEssence() >= 0) {
 			garage.getGarage().get(keyVoitureSelectionne).setMarche(true);
 		} else {
 			System.out.println("Pas assez d'essence pour démarrer");
@@ -75,11 +89,17 @@ public class Menu {
 	}
 
 	private void creationVoiture() {
-		// TODO chaque voiture doit être unique
-			String nomModel = askNomModel();
+		String nomModel = askNomModel();
+		// Check if a car with the same model already exists
+		if (garage.getGarage().containsKey(nomModel)) {
+			System.out.println("Cette voiture existe déjà. Merci d'entrer un nom de modèle different.");
+			// Optionally, you can call this method again to allow the user to try again
+			// creationVoiture();
+		} else {
 			Voiture v = new Voiture(nomModel);
-			//garage.getGarage()[emptySpace] = v;
 			garage.getGarage().put(nomModel, v);
+			System.out.println("Voiture crée avec succès");
+		}
 	}
 
 	private String askNomModel() {
@@ -93,14 +113,16 @@ public class Menu {
 		return sc.nextLine();
 	}
 
-	/*private int returnEmptySpaceFromGarage() {
-		for (int i = 0; i < garage.getGarage().length; i++) {
-			if (garage.getGarage()[i] == null) {
-				return i;
-			}
-		}
-		return -1;
-	}*/
+	/*
+	 * private int returnEmptySpaceFromGarage() {
+	 * for (int i = 0; i < garage.getGarage().length; i++) {
+	 * if (garage.getGarage()[i] == null) {
+	 * return i;
+	 * }
+	 * }
+	 * return -1;
+	 * }
+	 */
 
 	private void bye() {
 		System.out.println("Au revoir!");
@@ -117,13 +139,21 @@ public class Menu {
 	}
 
 	private void printMenuInitial() {
-		System.out.println("Bonjour!");
-		System.out.println("Que voulez faire :");
-		System.out.println("1 Créer une voiture");
-		System.out.println("2 Allumer une voiture");
-		System.out.println("3 Mettre de l'essence dans une voiture");
-		System.out.println("4 Afficher le garage");
-		System.out.println("5 Exit");
+		System.out.println(TextContent.TEXTBONJOUR);
+
+	}
+
+	{
+
+		try {
+			BufferedWriter bf = new BufferedWriter(new FileWriter("text.txt"));
+			bf.write("test1\n");
+			bf.write("test2\n");
+			bf.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 }
