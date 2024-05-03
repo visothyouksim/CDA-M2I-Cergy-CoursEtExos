@@ -1,12 +1,14 @@
 package game;
 
 import model.Joueur;
-
+import model.Personnage;
 public class Game {
 
 	String[][] carte = new String[10][10];
-	Joueur link = new Joueur(5, 5, "L");
-	
+	Personnage link = new Joueur(5, 5, "L", 3);
+	//arrayList<> 
+	//add 3 enemies à l'ALE
+	//afficher le contenu de l'ALE dans notre carte
 	
 	public void launch() {
 		carte = createTab(carte);
@@ -14,8 +16,8 @@ public class Game {
 		printTab(carte);
 	}
 	
-	private String[][] updateTabWithPerso(String[][] carte, Joueur link) {
-		carte[link.getX()][link.getY()] = link.getSprite();
+	private String[][] updateTabWithPerso(String[][] carte, Personnage perso) {
+		carte[perso.getX()][perso.getY()] = perso.getSprite();
 		return carte;
 	}
 

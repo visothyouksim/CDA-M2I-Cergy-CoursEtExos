@@ -1,40 +1,20 @@
 package model;
 
-public class Joueur {
+public class Joueur extends Personnage{
 
-	private int x, y;
-	private String sprite;
+	private int pdv;
 	
-	public Joueur(int x, int y, String sprite) {
-		this.x = x;
-		this.y = y;
-		this.sprite = sprite;
+	public Joueur(int x, int y, String sprite, int pdv) {
+		super(x, y, sprite);
+		this.pdv = pdv;
 	}
 
-	public int getX() {
-		return x;
+	public int getPdv() {
+		return pdv;
 	}
 
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public String getSprite() {
-		return sprite;
-	}
-
-	public void setSprite(String sprite) {
-		this.sprite = sprite;
-	}
-	
-	
+	public void setPdv(int pdv) {
+		this.pdv = pdv;
+	}	
 	
 }
