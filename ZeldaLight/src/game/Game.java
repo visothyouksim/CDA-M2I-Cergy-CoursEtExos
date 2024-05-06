@@ -34,17 +34,43 @@ public class Game {
 	}
 	
 	private void handleMouvement() {
-		System.out.println("Quel directement : z->up");
+		System.out.println("Direction : z->up");
 		Scanner sc = new Scanner(System.in);
 		String direction = sc.nextLine();
 		switch(direction) {
-		case "z": 
-			carte[link.getX()][link.getY()] = " ";
-			link.setY(link.getY()-1);
-			updateTabWithPerso(link);
+		case "z":
+			if(moveAllowed(link.getX()-1, link.getY())) {
+				carte[link.getX()][link.getY()] = " ";
+				link.setX(link.getX()-1);
+				updateTabWithPerso(link);
+			}
+			else {
+				//cas particulier
+				handleCollision(link.getX()-1, link.getY());
+			}
 			break;
 		}
 	}
+	
+	
+	private void handleCollision(int i, int y) {
+		//si I -> perso gagne 1 I
+		//si E -> 	//si le perso a un item, L remplace un E en se déplacent dessus
+					//si pas d'item, L perd
+		
+	}
+
+	
+	private boolean moveAllowed(int x, int y) {
+		/*if(carte[x][y]!=" ") { 
+			return true;
+		}
+		else {
+			return false;
+		}*/
+		return carte[x][y]==" " ? true : false;
+	}
+	
 
 	private void addItemsOnMap() {
 		for (Item i : itemList) {
@@ -99,14 +125,19 @@ public class Game {
 	}
 }
 /*
-MMMMMMMMMM
-M        M
-M        M
-M        M
-M        M
-M        M
-M        M
-M        M
-M        M
-MMMMMMMMMM
+M M M M M M M M M M M M M M M 
+M                           M 
+M   E                       M 
+M     E                     M 
+M                           M 
+M         L                 M 
+M                           M 
+M     I       E             M 
+M                           M 
+M   I                       M 
+M                   I       M 
+M                           M 
+M                           M 
+M                           M 
+M M M M M M M M M M M M M M M 
 */
