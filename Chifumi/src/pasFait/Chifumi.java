@@ -27,13 +27,10 @@ public class Chifumi {
 	public static void main(String[] args) {
 
 		
+		Game game = new Game();
+		game.launch();
 		
-		System.out.println("Bonjour!");
-		System.out.println("Chifumi!");
-		System.out.println("1 : lancer une partie!");
-		System.out.println("2 : afficher le score!");
-		System.out.println("3 : Sortir!");
-		System.out.println("Au revoir!");
+	
 		
 		
 
