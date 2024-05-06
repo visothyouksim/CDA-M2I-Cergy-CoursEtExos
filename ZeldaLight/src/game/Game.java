@@ -11,7 +11,7 @@ import model.Personnage;
 public class Game {
 
 	String[][] carte = new String[15][15];
-	Personnage link = new Joueur(5, 5, "L", 3);
+	Joueur link = new Joueur(5, 5, "L", 3, 0);
 	ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 	ArrayList<Item> itemList = new ArrayList<Item>();
 	boolean gameOn = true;
@@ -53,7 +53,19 @@ public class Game {
 	}
 	
 	
-	private void handleCollision(int i, int y) {
+	private void handleCollision(int x, int y) {
+		if(carte[x][y] == "I") {
+			link.setNbItem(link.getNbItem()+1);
+			Item tempItemToRemove = null;
+			for(Item i : itemList) {
+				if(i.getX()==x && i.getY()==y) tempItemToRemove = i;
+			}
+			itemList.remove(tempItemToRemove);
+			carte[link.getX()][link.getY()] = " ";
+			link.setX(x);
+			link.setY(y);
+			updateTabWithPerso(link);
+		}
 		//si I -> perso gagne 1 I
 		//si E -> 	//si le perso a un item, L remplace un E en se déplacent dessus
 					//si pas d'item, L perd
@@ -79,7 +91,7 @@ public class Game {
 	}
 
 	private void createItems() {
-		itemList.add(new Item(9, 2, "I"));
+		itemList.add(new Item(4, 5, "I"));
 		itemList.add(new Item(7, 3, "I"));
 		itemList.add(new Item(10, 10, "I"));
 		
