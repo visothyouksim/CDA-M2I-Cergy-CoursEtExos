@@ -49,7 +49,45 @@ public class Game {
 				handleCollision(link.getX()-1, link.getY());
 			}
 			break;
+		case "s":
+			if(moveAllowed(link.getX()+1, link.getY())) {
+				carte[link.getX()][link.getY()] = " ";
+				link.setX(link.getX()+1);
+				updateTabWithPerso(link);
+			}
+			else {
+				//cas particulier
+				handleCollision(link.getX()+1, link.getY());
+			}
+			break;
+		case "q":
+			if(moveAllowed(link.getX(), link.getY()-1)) {
+				carte[link.getX()][link.getY()] = " ";
+				link.setY(link.getY()-1);
+				updateTabWithPerso(link);
+			}
+			else {
+				//cas particulier
+				handleCollision(link.getX(), link.getY()-1);
+			}
+			break;
+		case "d":
+			if(moveAllowed(link.getX(), link.getY()+1)) {
+				carte[link.getX()][link.getY()] = " ";
+				link.setY(link.getY()+1);
+				updateTabWithPerso(link);
+			}
+			else {
+				//cas particulier
+				handleCollision(link.getX(), link.getY()+1);
+			}
+			break;
+			
+		default :
+			System.out.println("Erreur de saisie");
 		}
+		
+		
 	}
 	
 	
@@ -96,8 +134,6 @@ public class Game {
 				updateTabWithPerso(link);
 			}
 		}
-		//si E -> 	//si le perso a un item, L remplace un E en se déplacent dessus, on décrémente le nb d'item
-					//si pas d'item, L perd message de gameover
 		
 	}
 
