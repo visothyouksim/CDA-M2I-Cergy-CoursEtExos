@@ -56,19 +56,48 @@ public class Game {
 	private void handleCollision(int x, int y) {
 		if(carte[x][y] == "I") {
 			link.setNbItem(link.getNbItem()+1);
+
+			/*impossible car itemList est verrouilée
+			 * for(Item i : itemList) {
+				if(i.getX()==x && i.getY()==y) itemList.remove(i);
+			}*/
+			
 			Item tempItemToRemove = null;
 			for(Item i : itemList) {
 				if(i.getX()==x && i.getY()==y) tempItemToRemove = i;
 			}
 			itemList.remove(tempItemToRemove);
+			
+			
 			carte[link.getX()][link.getY()] = " ";
 			link.setX(x);
 			link.setY(y);
 			updateTabWithPerso(link);
 		}
-		//si I -> perso gagne 1 I
-		//si E -> 	//si le perso a un item, L remplace un E en se déplacent dessus
-					//si pas d'item, L perd
+		
+		else if(carte[x][y]=="E") {
+			if(link.getNbItem()==0) {
+				gameOn = false;
+				System.out.println("Game Over!");
+			}
+			else {
+				link.setNbItem(link.getNbItem()-1);
+				
+				Enemy tempEnemyToRemove = null;
+				for(Enemy e : enemyList) {
+					if(e.getX()==x && e.getY()==y) tempEnemyToRemove = e;
+				}
+				enemyList.remove(tempEnemyToRemove);
+				
+				
+				carte[link.getX()][link.getY()] = " ";
+				link.setX(x);
+				link.setY(y);
+				updateTabWithPerso(link);
+			}
+		}
+		//si E -> 	//si le perso a un item, L remplace un E en se déplacent dessus, on décrémente le nb d'item
+					//si pas d'item, L perd message de gameover
 		
 	}
 
@@ -91,7 +120,7 @@ public class Game {
 	}
 
 	private void createItems() {
-		itemList.add(new Item(4, 5, "I"));
+		//itemList.add(new Item(4, 5, "I"));
 		itemList.add(new Item(7, 3, "I"));
 		itemList.add(new Item(10, 10, "I"));
 		
@@ -104,7 +133,7 @@ public class Game {
 	}
 
 	private void createEnemies() {
-		enemyList.add(new Enemy(2, 2, "E"));
+		enemyList.add(new Enemy(3, 5, "E"));
 		enemyList.add(new Enemy(3, 3, "E"));
 		enemyList.add(new Enemy(7, 7, "E"));
 	}
