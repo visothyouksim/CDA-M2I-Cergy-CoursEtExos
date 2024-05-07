@@ -1,5 +1,9 @@
 package game;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,7 +14,7 @@ import model.Joueur;
 import model.Personnage;
 public class Game {
 
-	String[][] carte = new String[15][15];
+	String[][] carte = null;
 	Joueur link = new Joueur(5, 5, "L", 3, 0);
 	ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 	ArrayList<Item> itemList = new ArrayList<Item>();
@@ -20,12 +24,12 @@ public class Game {
 	//class item héritant de Element
 	//x, y et sprite dans Element
 	public void launch() {
-		createEnemies();
-		createItems();
+		//createEnemies();
+		//createItems();
 		createTab();
-		addEnemieOnMap();
-		addItemsOnMap();
-		updateTabWithPerso(link);
+		//addEnemieOnMap();
+		//addItemsOnMap();
+		//updateTabWithPerso(link);
 		
 		while(gameOn) {
 			printTab();
@@ -92,7 +96,7 @@ public class Game {
 	
 	
 	private void handleCollision(int x, int y) {
-		if(carte[x][y] == "I") {
+		if(carte[x][y].equals("I")) {
 			link.setNbItem(link.getNbItem()+1);
 
 			/*impossible car itemList est verrouilée
@@ -113,7 +117,7 @@ public class Game {
 			updateTabWithPerso(link);
 		}
 		
-		else if(carte[x][y]=="E") {
+		else if(carte[x][y].equals("E")) {
 			if(link.getNbItem()==0) {
 				gameOn = false;
 				System.out.println("Game Over!");
@@ -145,7 +149,7 @@ public class Game {
 		else {
 			return false;
 		}*/
-		return carte[x][y]==" " ? true : false;
+		return carte[x][y].equals(" ") ? true : false;
 	}
 	
 
@@ -179,7 +183,28 @@ public class Game {
 	}
 
 	private void createTab() {
-		for(int i = 0; i<carte.length; i++) {
+		try {
+			BufferedReader bf = new BufferedReader(new FileReader("level.txt"));
+			int x  = Integer.valueOf(bf.readLine());
+			int y  = Integer.valueOf(bf.readLine());
+			carte = new String[x][y];
+			//int indexX=0;
+			for(int i = 0; i<carte.length; i++) {
+				String stringTemp = bf.readLine();
+				char[] charArray = stringTemp.toCharArray();
+				for(int j = 0; j<carte[i].length; j++) {
+					carte[i][j]=Character.toString(charArray[j]);
+				}
+			}
+				
+			
+			//on va chercher chaque élément de ce String
+			//pour les ranger dans la carte
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		/*for(int i = 0; i<carte.length; i++) {
 			for(int j = 0; j<carte[i].length; j++) {
 				if(i==0||i==carte.length-1|| j==0|| j==carte[i].length-1) {
 					carte[i][j]= "M";
@@ -188,7 +213,7 @@ public class Game {
 					carte[i][j]= " ";
 				}
 			}
-		}
+		}*/
 	}
 
 	//methode pour afficher la carte
