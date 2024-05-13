@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Map.Entry;
+
 import data.Data;
 import data.TxtConst;
 import model.Groupe;
@@ -210,11 +212,21 @@ public class Launch {
 					.remove(Data.getScenes().get(sceneToRemove));
 				};
 			break;
-			case 4:;
+			case 4:
+				System.out.println("Quel groupe voulez vous supprimer?");
+				Utilitaires.printGroupes(Data.getGroupes());
+				String nomGroupeToRemove = Utilitaires.getStringFromUser();
+				Groupe groupeToRemove = Data.getGroupes().get(nomGroupeToRemove);
+				
+				for(Entry<String, Scene> scene : Data.getScenes().entrySet()) {
+					if(scene.getValue().getGroupes().contains(groupeToRemove)) {
+						scene.getValue().getGroupes().remove(groupeToRemove);
+					}
+					Data.getGroupes().remove(nomGroupeToRemove, groupeToRemove);
+				};
 			break;
 			case 5:
 				Data.setSubPartOn(false);
-				break;
 			break;
 			
 			} 
