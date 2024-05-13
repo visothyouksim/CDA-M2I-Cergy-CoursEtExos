@@ -181,15 +181,43 @@ public class Launch {
 			System.out.println(TxtConst.MENUFESTIVAL);
 			System.out.println("1. Voulez vous lister les scenes liées au festival?");
 			System.out.println("2. Voulez vous ajouter une scene au festival?");
-			System.out.println("3. Voulez vous supprimer un groupe?");
-			System.out.println("4. Voulez vous ajouter une scene à un festival?");
-			System.out.println("5. Voulez vous supprimer une scene d'un festival?");
+			System.out.println("3. Voulez vous supprimer une scene d'un festival?");
 			
-			System.out.println("4. Revenir au menu principal?");
+			System.out.println("4. Voulez vous supprimer un groupe?");
 
-			// TODO
-			// CRUD - s'inspirer de menuGroupe
+			System.out.println("5. Revenir au menu principal?");
 
+			switch (Utilitaires.saisieInt()) {
+			case 1:
+				System.out.println(Data.getFestival().getScenes());
+			break;
+			case 2:
+				System.out.println("Quel scene voulez vous ajouter?");
+				Utilitaires.printScenes(Data.getScenes());
+				String nomSceneToAdd = Utilitaires.getStringFromUser();
+				if(Data.getScenes().containsKey(nomSceneToAdd)) {
+					Data.getFestival().getScenes()
+					.add(Data.getScenes().get(nomSceneToAdd));
+				};
+			break;
+			case 3:
+				System.out.println("Quel scene voulez vous supprimer?");
+				System.out.println(Data.getFestival().getScenes());
+				String nomSceneToRemove = Utilitaires.getStringFromUser();
+				Scene sceneToRemove = Data.getScenes().get(nomSceneToRemove);
+				if(Data.getFestival().getScenes().contains(sceneToRemove)) {
+					Data.getFestival().getScenes()
+					.remove(Data.getScenes().get(sceneToRemove));
+				};
+			break;
+			case 4:;
+			break;
+			case 5:
+				Data.setSubPartOn(false);
+				break;
+			break;
+			
+			} 
 		} while (Data.isSubPartOn());
 
 	}

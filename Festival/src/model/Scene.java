@@ -28,6 +28,12 @@ public class Scene extends Entity{
 	public void setGroupes(ArrayList<Groupe> groupes) {
 		this.Groupes = groupes;
 	}
+
+	@Override
+	public String toString() {
+		return "Scene [Groupes=" + Groupes + "]";
+	}
+	
 	
 	
 }
