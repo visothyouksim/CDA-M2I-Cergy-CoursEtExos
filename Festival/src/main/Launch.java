@@ -1,5 +1,8 @@
 package main;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Map.Entry;
 
 import data.Data;
@@ -237,6 +240,15 @@ public class Launch {
 	private void menuSave() {
 		System.out.println(TxtConst.MENUSAVE);
 
+		BufferedWriter bf;
+		try {
+			bf = new BufferedWriter(new FileWriter("save.txt"));
+			bf.write(Data.getFestival().toString());
+			bf.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		// TODO
 		// Enregistrer les données du festival dans un fichier, quel qu'il soit
 		// pas de mise en forme particulière, on veut juste que toutes les données y
