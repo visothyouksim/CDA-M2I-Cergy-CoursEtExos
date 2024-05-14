@@ -126,7 +126,8 @@ public class Potager {
 												+ new Carotte().getValeur() + " euros.");
 									} else {
 										System.out
-												.println("Vous n'avez plus de " + new Carotte().toString() + " à vendre.");
+												.println("Vous n'avez plus de " + new Carotte().toString()
+														+ " à vendre.");
 									}
 								} else {
 									System.out.println("Vous n'avez pas de " + new Carotte().toString() + " à vendre.");
@@ -142,7 +143,8 @@ public class Potager {
 												+ new Poireau().getValeur() + " euros.");
 									} else {
 										System.out
-												.println("Vous n'avez plus de " + new Poireau().toString() + " à vendre.");
+												.println("Vous n'avez plus de " + new Poireau().toString()
+														+ " à vendre.");
 									}
 								} else {
 									System.out.println("Vous n'avez pas de " + new Poireau().toString() + " à vendre.");
@@ -158,7 +160,8 @@ public class Potager {
 												+ new Pdt().getValeur() + " euros.");
 									} else {
 										System.out
-												.println("Vous n'avez plus de " + new Pomme().toString() + " à vendre.");
+												.println(
+														"Vous n'avez plus de " + new Pomme().toString() + " à vendre.");
 									}
 								} else {
 									System.out.println("Vous n'avez pas de " + new Pomme().toString() + " à vendre.");
@@ -207,6 +210,12 @@ public class Potager {
 				default:
 					System.out.println("Option invalide");
 			}
+
+			// TO DO
+			// ajout : la pousse de chaque fruit/legume du potager
+			// (il faut qu'à chaque action, tous les fruits et légumes poussent)
+			// les fruits et légumes trop mûr sont perdus et retirés du potager
+
 		} while (appliOn);
 	}
 }
