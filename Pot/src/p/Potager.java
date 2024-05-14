@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Iterator;
 import java.util.List;
 
 import UUU.Utilitaires;
@@ -20,6 +19,17 @@ public class Potager {
 	HashMap<Aliment, Integer> gardeManger = new HashMap<Aliment, Integer>();
 	ArrayList<Aliment> potager = new ArrayList<Aliment>();
 	float argentDisponible = 10;
+
+    public void fairePousserEtRecolter() {
+        for (Aliment plant : potager) {
+            plant.grow();
+            if (plant.isMature()) {
+                gardeManger.put(plant, 1);
+                System.out.println("Le " + plant.toString() + " est mature et a été récolté.");
+                potager.remove(plant);
+            }
+        }
+    }
 
 	public void cestparti() {
 
@@ -163,18 +173,6 @@ public class Potager {
 				default:
 					System.out.println("Option invalide");
 			}
-
-			// Faire pousser chaque fruit/legume du potager
-			Iterator<Aliment> iterator = potager.iterator();
-			while (iterator.hasNext()) {
-				Aliment plant = iterator.next();
-				plant.grow();
-				if (plant.isMature()) {
-					iterator.remove();
-					System.out.println("Le " + plant.toString() + " est trop mûr et a été retiré du potager.");
-				}
-			}
-
 		} while (appliOn);
 	}
 }

@@ -8,6 +8,16 @@ public class Pomme extends Fruit{
 	}
 
 	@Override
+    public void grow() {
+		incrementNiveauDeMaturite();
+    }
+
+    @Override
+    public boolean isMature() {
+        return niveauDeMaturite >= dureePoussePourMaturite;
+    }
+
+	@Override
 	public String toString() {
 		return "Pomme [nom=" + nom + ", dureeDeLaPoussePourMaturite=" + dureePoussePourMaturite
 				+ ", quantiteObtenuLorsDeLaRecolte=" + quantiteObtenuLorsDeLaRecolte + ", niveauDeMaturite="

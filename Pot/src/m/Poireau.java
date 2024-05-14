@@ -10,6 +10,17 @@ public class Poireau extends Legume{
 	}
 
 	@Override
+    public void grow() {
+		incrementNiveauDeMaturite();
+    }
+
+    @Override
+    public boolean isMature() {
+        return niveauDeMaturite >= dureePoussePourMaturite;
+    }
+
+
+	@Override
 	public String toString() {
 		return "Poireau [nom=" + nom + ", dureeDeLaPoussePourMaturite=" + dureePoussePourMaturite
 				+ ", quantiteObtenuLorsDeLaRecolte=" + quantiteObtenuLorsDeLaRecolte + ", niveauDeMaturite="

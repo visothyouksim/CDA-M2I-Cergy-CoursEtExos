@@ -18,6 +18,14 @@ public abstract class Aliment {
         this.niveauDeMaturite = 0;
     }
 
+	public void incrementNiveauDeMaturite() {
+		niveauDeMaturite++;
+	}
+
+	public abstract void grow();
+
+    public abstract boolean isMature();
+
     public String getNom() {
         return nom;
     }
@@ -66,15 +74,7 @@ public abstract class Aliment {
         this.prixPourPlanter = prixPourPlanter;
     }
 
-    public boolean isMature() {
-        return niveauDeMaturite >= dureePoussePourMaturite;
-    }
-
     public float getValeur() {
         return prixDevente;
-    }
-
-    public void grow() {
-        niveauDeMaturite++;
     }
 }
