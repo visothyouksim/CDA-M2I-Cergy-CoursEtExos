@@ -18,14 +18,6 @@ public abstract class Aliment {
         this.niveauDeMaturite = 0;
     }
 
-	public void incrementNiveauDeMaturite() {
-		niveauDeMaturite++;
-	}
-
-	public abstract void grow();
-
-    public abstract boolean isMature();
-
     public String getNom() {
         return nom;
     }

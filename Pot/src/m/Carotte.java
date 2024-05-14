@@ -9,16 +9,6 @@ public class Carotte extends Aliment{
 	}
 
 	@Override
-    public void grow() {
-		incrementNiveauDeMaturite();
-    }
-
-    @Override
-    public boolean isMature() {
-        return niveauDeMaturite >= dureePoussePourMaturite;
-    }
-
-	@Override
 	public String toString() {
 		return "Carotte [nom=" + nom + ", dureeDeLaPoussePourMaturite=" + dureePoussePourMaturite
 				+ ", quantiteObtenuLorsDeLaRecolte=" + quantiteObtenuLorsDeLaRecolte + ", niveauDeMaturite="

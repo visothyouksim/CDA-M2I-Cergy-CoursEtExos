@@ -1,3 +1,6 @@
 Etat du potager :
+Pdt est en croissance.
 Carotte est en croissance.
+Poireau est en croissance.
+Pomme est en croissance.
 Etat du garde-manger :

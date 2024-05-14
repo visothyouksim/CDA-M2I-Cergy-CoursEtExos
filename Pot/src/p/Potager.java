@@ -15,21 +15,11 @@ import m.Poireau;
 import m.Pomme;
 
 public class Potager {
+	Aliment plant;
 
 	HashMap<Aliment, Integer> gardeManger = new HashMap<Aliment, Integer>();
 	ArrayList<Aliment> potager = new ArrayList<Aliment>();
 	float argentDisponible = 10;
-
-    public void fairePousserEtRecolter() {
-        for (Aliment plant : potager) {
-            plant.grow();
-            if (plant.isMature()) {
-                gardeManger.put(plant, 1);
-                System.out.println("Le " + plant.toString() + " est mature et a été récolté.");
-                potager.remove(plant);
-            }
-        }
-    }
 
 	public void cestparti() {
 
@@ -86,26 +76,19 @@ public class Potager {
 					System.out.print("Quel fruit ou legume voulez vous recolter?");
 					int jj = Utilitaires.readInt();
 					if (jj >= 1 && jj <= 4) {
-						Aliment plant = null;
 						switch (jj) {
 							case 1:
-								plant = new Pdt();
+								Utilitaires.printPotager(potager);
 								break;
 							case 2:
-								plant = new Carotte();
+								Utilitaires.printPotager(potager);
 								break;
 							case 3:
-								plant = new Poireau();
+								Utilitaires.printPotager(potager);
 								break;
 							case 4:
-								plant = new Pomme();
+								Utilitaires.printPotager(potager);
 								break;
-						}
-						if (plant != null && plant.isMature()) {
-							potager.remove(plant);
-							System.out.println("Vous avez recolte " + plant.toString());
-						} else {
-							System.out.println("Le " + plant.toString() + " n'est pas encore mature.");
 						}
 					} else {
 						System.out.println("Option invalide");
@@ -116,19 +99,70 @@ public class Potager {
 					System.out.print("Quel fruit/legume vendre? ");
 					int kk = Utilitaires.readInt();
 					if (kk >= 1 && kk <= 4) {
-						Aliment plant = null;
 						switch (kk) {
 							case 1:
-								plant = new Pdt();
+								if (gardeManger.containsKey(new Pdt()) && gardeManger.get(new Pdt()) > 0) {
+									int quantity = gardeManger.get(new Pdt());
+									if (quantity > 0) {
+										gardeManger.put(new Pdt(), quantity - 1);
+										argentDisponible += new Pdt().getValeur();
+										System.out.println("Vous avez vendu " + new Pdt().toString() + " pour "
+												+ new Pdt().getValeur() + " euros.");
+									} else {
+										System.out
+												.println("Vous n'avez plus de " + new Pdt().toString() + " à vendre.");
+									}
+								} else {
+									System.out.println("Vous n'avez pas de " + new Pdt().toString() + " à vendre.");
+								}
 								break;
 							case 2:
-								plant = new Carotte();
+								if (gardeManger.containsKey(new Carotte()) && gardeManger.get(new Carotte()) > 0) {
+									int quantity = gardeManger.get(new Carotte());
+									if (quantity > 0) {
+										gardeManger.put(new Carotte(), quantity - 1);
+										argentDisponible += new Carotte().getValeur();
+										System.out.println("Vous avez vendu " + new Carotte().toString() + " pour "
+												+ new Carotte().getValeur() + " euros.");
+									} else {
+										System.out
+												.println("Vous n'avez plus de " + new Carotte().toString() + " à vendre.");
+									}
+								} else {
+									System.out.println("Vous n'avez pas de " + new Carotte().toString() + " à vendre.");
+								}
 								break;
 							case 3:
-								plant = new Poireau();
+								if (gardeManger.containsKey(new Poireau()) && gardeManger.get(new Poireau()) > 0) {
+									int quantity = gardeManger.get(new Poireau());
+									if (quantity > 0) {
+										gardeManger.put(new Poireau(), quantity - 1);
+										argentDisponible += new Poireau().getValeur();
+										System.out.println("Vous avez vendu " + new Poireau().toString() + " pour "
+												+ new Poireau().getValeur() + " euros.");
+									} else {
+										System.out
+												.println("Vous n'avez plus de " + new Poireau().toString() + " à vendre.");
+									}
+								} else {
+									System.out.println("Vous n'avez pas de " + new Poireau().toString() + " à vendre.");
+								}
 								break;
 							case 4:
-								plant = new Pomme();
+								if (gardeManger.containsKey(new Pomme()) && gardeManger.get(new Pomme()) > 0) {
+									int quantity = gardeManger.get(new Pomme());
+									if (quantity > 0) {
+										gardeManger.put(new Pomme(), quantity - 1);
+										argentDisponible += new Pomme().getValeur();
+										System.out.println("Vous avez vendu " + new Pomme().toString() + " pour "
+												+ new Pdt().getValeur() + " euros.");
+									} else {
+										System.out
+												.println("Vous n'avez plus de " + new Pomme().toString() + " à vendre.");
+									}
+								} else {
+									System.out.println("Vous n'avez pas de " + new Pomme().toString() + " à vendre.");
+								}
 								break;
 						}
 						if (plant != null && gardeManger.containsKey(plant)) {
