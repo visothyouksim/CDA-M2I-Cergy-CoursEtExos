@@ -18,16 +18,6 @@ public abstract class Aliment {
         this.niveauDeMaturite = 0;
     }
 
-	// Assuming there are properties like 'growthStage' or 'maturityLevel'
-    // that determine if the Aliment is ready to be harvested.
-    protected int growthStage;
-
-    public Aliment(int growthStage) {
-        this.growthStage = growthStage;
-    }
-
-    public abstract boolean isReadyToHarvest();
-
     public String getNom() {
         return nom;
     }

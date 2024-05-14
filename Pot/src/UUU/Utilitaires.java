@@ -30,21 +30,18 @@ public class Utilitaires {
 	//donc, pas ce qui est en dessous!
 	public static void printArrayList(ArrayList<Aliment> potager) {
 		for (Aliment aliment : potager) {
-			if (aliment.isReadyToHarvest()) {
-				System.out.println(aliment.toString().toUpperCase());
-			} else {
-				System.out.println(aliment.toString().toLowerCase());
-			}
+			System.out.println(aliment.toString());
 		}
 	}
 	
 	public static void printPotager(ArrayList<Aliment> potager) {
-		for (Aliment aliment : potager) {
-			if (aliment.isReadyToHarvest()) {
-				System.out.println(aliment.toString().toUpperCase());
-			} else {
-				System.out.println(aliment.toString().toLowerCase());
-			}
-		}
-	}	
+        for (Aliment aliment : potager) {
+            System.out.println(aliment.toString());
+        }
+    }
+	
+	
+	
+	
+	
 }

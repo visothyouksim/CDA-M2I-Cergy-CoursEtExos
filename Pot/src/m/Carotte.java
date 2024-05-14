@@ -15,11 +15,5 @@ public class Carotte extends Aliment{
 				+ niveauDeMaturite + ", prixDeVente=" + prixDevente + ", prixPourPlanter=" + prixPourPlanter + "]";
 	}
 	
-	@Override
-    public boolean isReadyToHarvest() {
-        // Un aliment est prêt à être récolté si sa durée de poussée a été atteinte
-        return dureePoussePourMaturite <= 0;
-    }
-	
 	
 }

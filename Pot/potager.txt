@@ -1,2 +1,3 @@
 Etat du potager :
 Etat du garde-manger :
+Carotte : 1 unités.
