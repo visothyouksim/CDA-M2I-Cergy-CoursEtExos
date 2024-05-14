@@ -11,9 +11,9 @@ public class Poireau extends Legume{
 
 	@Override
 	public String toString() {
-		return "Poireau [nom=" + Nom + ", dureeDeLaPoussePourMaturite=" + dureeDeLaPoussePourMaturite
+		return "Poireau [nom=" + nom + ", dureeDeLaPoussePourMaturite=" + dureePoussePourMaturite
 				+ ", quantiteObtenuLorsDeLaRecolte=" + quantiteObtenuLorsDeLaRecolte + ", niveauDeMaturite="
-				+ niveauDeMaturite + ", prixDeVente=" + prixdevente + ", prixPourPlanter=" + prixpourplanter + "]";
+				+ niveauDeMaturite + ", prixDeVente=" + prixDevente + ", prixPourPlanter=" + prixPourPlanter + "]";
 	}
 
 	

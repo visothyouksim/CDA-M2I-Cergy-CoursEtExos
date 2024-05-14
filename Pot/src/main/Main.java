@@ -1,13 +1,10 @@
-package mAin;
+package main;
 
-public class mAin {
+import p.Potager;
 
-	public Main(Strin args) {
-		
-		Potager p = new Potager();		
-
-		
-
-	}
-
+public class Main {
+    public static void main(String[] args) {
+        Potager p = new Potager();
+        p.cestparti();
+    }
 }

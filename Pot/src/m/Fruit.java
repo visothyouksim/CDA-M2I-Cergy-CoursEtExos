@@ -6,7 +6,8 @@ public class Fruit extends Aliment{
 		super(nom, dureePousse, recoltePousse, prix, prixPourPlanter);
 	}
 
-
-
-
+	@Override
+    public boolean isReadyToHarvest() {
+        return super.growthStage >= 5;
+    }
 }

@@ -9,9 +9,9 @@ public class Pomme extends Fruit{
 
 	@Override
 	public String toString() {
-		return "Pomme [nom=" + Nom + ", dureeDeLaPoussePourMaturite=" + dureeDeLaPoussePourMaturite
+		return "Pomme [nom=" + nom + ", dureeDeLaPoussePourMaturite=" + dureePoussePourMaturite
 				+ ", quantiteObtenuLorsDeLaRecolte=" + quantiteObtenuLorsDeLaRecolte + ", niveauDeMaturite="
-				+ niveauDeMaturite + ", prixDeVente=" + prixdevente + ", prixPourPlanter=" + prixpourplanter + "]";
+				+ niveauDeMaturite + ", prixDeVente=" + prixDevente + ", prixPourPlanter=" + prixPourPlanter + "]";
 	}
 
 	
