@@ -1,20 +1,19 @@
-package m;
+package model;
 
-public class Pomme extends Fruit{
-			
-	public Pomme() {
-		super("Pomme", 2, 2, 2, 3);
-		
+public class Pdt extends Legume{
+	
+	public Pdt() {
+		super("Pdt", 3, 4, 8, 1);
 	}
 
 	@Override
 	public String toString() {
-		return "Pomme [nom=" + Nom + ", dureeDeLaPoussePourMaturite=" + dureeDeLaPoussePourMaturite
+		return "Pdt [nom=" + Nom + ", dureeDeLaPoussePourMaturite=" + dureeDeLaPoussePourMaturite
 				+ ", quantiteObtenuLorsDeLaRecolte=" + quantiteObtenuLorsDeLaRecolte + ", niveauDeMaturite="
 				+ niveauDeMaturite + ", prixDeVente=" + prixdevente + ", prixPourPlanter=" + prixpourplanter + "]";
 	}
 
-	
-	
+
+
 	
 }

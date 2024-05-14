@@ -1,13 +1,13 @@
-package mAin;
+package main;
 
-public class mAin {
+import potager.Potager;
 
-	public Main(Strin args) {
+public class Main {
+
+	public static void main(String [] args) {
 		
-		Potager p = new Potager();		
-
-		
-
+		Potager p = new Potager();
+		p.launch();
 	}
 
 }

@@ -1,4 +1,4 @@
-package m;
+package model;
 
 public class Aliment {
 
@@ -49,6 +49,46 @@ public class Aliment {
 
 	public void setMomentPousse(int momentPousse) {
 		this.niveauDeMaturite = momentPousse;
+	}
+
+	public int getDureeDeLaPoussePourMaturite() {
+		return dureeDeLaPoussePourMaturite;
+	}
+
+	public void setDureeDeLaPoussePourMaturite(int dureeDeLaPoussePourMaturite) {
+		this.dureeDeLaPoussePourMaturite = dureeDeLaPoussePourMaturite;
+	}
+
+	public int getQuantiteObtenuLorsDeLaRecolte() {
+		return quantiteObtenuLorsDeLaRecolte;
+	}
+
+	public void setQuantiteObtenuLorsDeLaRecolte(int quantiteObtenuLorsDeLaRecolte) {
+		this.quantiteObtenuLorsDeLaRecolte = quantiteObtenuLorsDeLaRecolte;
+	}
+
+	public int getNiveauDeMaturite() {
+		return niveauDeMaturite;
+	}
+
+	public void setNiveauDeMaturite(int niveauDeMaturite) {
+		this.niveauDeMaturite = niveauDeMaturite;
+	}
+
+	public float getPrixdevente() {
+		return prixdevente;
+	}
+
+	public void setPrixdevente(float prixdevente) {
+		this.prixdevente = prixdevente;
+	}
+
+	public float getPrixpourplanter() {
+		return prixpourplanter;
+	}
+
+	public void setPrixpourplanter(float prixpourplanter) {
+		this.prixpourplanter = prixpourplanter;
 	}
 	
 	

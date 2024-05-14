@@ -1,19 +1,21 @@
-package m;
+package model;
 
-public class Pdt extends Legume{
+public class Carotte extends Legume{
+
 	
-	public Pdt() {
-		super("Pdt", 3, 4, 8, 1);
+	public Carotte() {
+		super("Carotte", 4, 2, 10, 2);
+		
 	}
 
 	@Override
 	public String toString() {
-		return "Pdt [nom=" + Nom + ", dureeDeLaPoussePourMaturite=" + dureeDeLaPoussePourMaturite
+		return "Carotte [nom=" + Nom + ", dureeDeLaPoussePourMaturite=" + dureeDeLaPoussePourMaturite
 				+ ", quantiteObtenuLorsDeLaRecolte=" + quantiteObtenuLorsDeLaRecolte + ", niveauDeMaturite="
 				+ niveauDeMaturite + ", prixDeVente=" + prixdevente + ", prixPourPlanter=" + prixpourplanter + "]";
 	}
+	
 
-
-
+	
 	
 }
